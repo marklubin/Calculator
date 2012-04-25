@@ -57,7 +57,8 @@
 - (double)performOperation:(NSString *)operation
 {
     [self.programStack addObject:operation];
-    return [[self class] runProgram:self.program];
+    return [[self class] runProgram:self.program
+                         usingVariableValues:self.variableDictionary];
 }
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack
@@ -103,15 +104,6 @@
     }
 
     return result;
-}
-
-+ (double)runProgram:(id)program //change this method to call runProgram:usingVariableValues with our instance NSMutable Dictionary
-{
-    NSMutableArray *stack;
-    if ([program isKindOfClass:[NSArray class]]) {
-        stack = [program mutableCopy];
-    }
-    return [self popOperandOffProgramStack:stack];
 }
 
 + (double)runProgram:(id)program 
@@ -168,5 +160,14 @@
     [self.programStack removeAllObjects];
 }
 
+//deprecated with new variable features
++ (double)runProgram:(id)program 
+{
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    return [self popOperandOffProgramStack:stack];
+}
 
 @end
