@@ -117,7 +117,13 @@
 + (double)runProgram:(id)program 
  usingVariableValues:(NSDictionary *)variableValues{
     //decode values and send to regular run program
-    return 0;
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    //if a variable is in the stack replace it with a number
+    //ignore any operation commands
+    return [self popOperandOffProgramStack:stack];
 }
 
 -(void) clearOperandStack{
