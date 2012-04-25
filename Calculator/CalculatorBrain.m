@@ -12,18 +12,23 @@
 
 @interface CalculatorBrain()
 @property (nonatomic, strong) NSMutableArray *programStack;
+@property (nonatomic, strong) NSDictionary *variableDictionary;
 @end
 
 @implementation CalculatorBrain
 
 @synthesize programStack = _programStack;
+@synthesize variableDictionary = _variableDictionary;
 
 - (NSMutableArray *)programStack
 {
     if (_programStack == nil) _programStack = [[NSMutableArray alloc] init];
     return _programStack;
 }
-
+-(NSDictionary *)variableDictionary{
+    if(_variableDictionary == nil) _variableDictionary = [[NSDictionary alloc] init];
+    return _variableDictionary;
+}
 - (id)program
 {
     return [self.programStack copy];
@@ -32,6 +37,10 @@
 + (NSString *)descriptionOfProgram:(id)program
 {
     return @"Implement this in Homework #2";
+}
+
+-(void) setValue:(double)value forVariable:(NSString *)variable{
+    //Add to my NSDictionary
 }
 
 - (void)pushOperand:(double)operand
