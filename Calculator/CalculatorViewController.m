@@ -95,9 +95,9 @@
     double x,y,z;
     //change to real test values
     if([test isEqualToString:@"Test 1"]){
-        x = 0;
-        y = 0;
-        z = 0;
+        x = -2;
+        y = 2;
+        z = 4;
     }
     else if([test isEqualToString:@"Test 2"]){
         x = 0;

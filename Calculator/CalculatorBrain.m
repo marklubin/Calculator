@@ -107,7 +107,7 @@
 }
 
 + (double)runProgram:(id)program 
- usingVariableValues:(NSMutableDictionary *)variableValues{
+ usingVariableValues:(NSDictionary *)variableValues{
     //decode values and send to regular run program
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {
@@ -123,6 +123,7 @@
            NSString *string = object;
            if([varsUsed containsObject:string]) {
                NSNumber *variableValue = [variableValues objectForKey:string];
+               if(!variableValue) variableValue = [NSNumber numberWithDouble:0.0];
                [stack replaceObjectAtIndex:i withObject:variableValue];
            }
        }
@@ -132,21 +133,23 @@
 
 + (NSSet *)variablesUsedInProgram:(id)program{
     NSMutableArray *stack;
-    NSSet *variables;
+    NSMutableSet *variables = [[NSMutableSet alloc] init ];
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
     for (id object in stack) {
         if([object isKindOfClass:[NSString class]]){
             NSString *string = object;
-            if(![self isOperation:string]){
-                //TODO add this to variables if its not there yet
+            if(![self isOperation:string] && ![variables containsObject:string]){
+                [variables addObject:string];
             }
         }
     }
-    return variables;
+    if([variables count] != 0){
+        return (NSSet*)variables;
+    }
+    else return nil;
 }
-
 + (NSSet *)supportedOperations{
     return [NSSet setWithObjects:@"+",@"-",@"/",@"*",@"sin",@"cos",@"pi",@"sqrt", nil];
 }
