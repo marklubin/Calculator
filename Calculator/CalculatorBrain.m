@@ -38,6 +38,10 @@
 {
     [self.programStack addObject:[NSNumber numberWithDouble:operand]];
 }
+-(void)pushVariable:(NSString *)variable{
+    [self.programStack addObject:variable];
+}
+
 
 - (double)performOperation:(NSString *)operation
 {

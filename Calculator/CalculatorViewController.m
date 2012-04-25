@@ -79,7 +79,25 @@
         self.display.text = [self.display.text stringByAppendingString:@"."];
     }
 }
+- (IBAction)variablePressed:(UIButton *)sender {
+    //push a variable to the stack
+    //push whatever was already in the display to the stack
+    NSString *variableName = sender.currentTitle;
+    if(self.userIsInTheMiddleOfEnteringNumber) [self enterPressed];
+    [self.brain pushVariable:variableName];
+    variableName = [variableName stringByAppendingString:@" "];
+    self.operandStackDisplay.text = [self.operandStackDisplay.text
+                                     stringByAppendingString:variableName];
 
+}
+
+-(void) setValue:(double)value forVariable:(NSString *)variable{
+    //helper function to set value of variable send to brain
+}
+
+- (IBAction)undoPressed {
+    //implement undo
+}
 
 - (void)viewDidUnload {
     [self setOperandStackDisplay:nil];
