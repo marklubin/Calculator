@@ -2,8 +2,8 @@
 //  CalculatorBrain.h
 //  Calculator
 //
-//  Created by CS193p Instructor.
-//  Copyright (c) 2011 Stanford University.
+//  Created by Mark Lubin
+//  Copyright (c) 2011 Mark Lubin
 //  All rights reserved.
 //
 

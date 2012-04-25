@@ -2,8 +2,8 @@
 //  CalculatorBrain.m
 //  Calculator
 //
-//  Created by CS193p Instructor.
-//  Copyright (c) 2011 Stanford University.
+//  Created by Mark Lubin
+//  Copyright (c) 2011 Mark Lubin
 //  All rights reserved.
 //
 
@@ -131,8 +131,8 @@
 }
 
 + (NSSet *)variablesUsedInProgram:(id)program{
-    //loop through add all non-operations to NSSet use isOperation
     NSMutableArray *stack;
+    NSSet *variables;
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
@@ -140,11 +140,11 @@
         if([object isKindOfClass:[NSString class]]){
             NSString *string = object;
             if(![self isOperation:string]){
-                //add this to variable list if its not there yet
+                //TODO add this to variables if its not there yet
             }
         }
     }
-    return nil;
+    return variables;
 }
 
 + (NSSet *)supportedOperations{
