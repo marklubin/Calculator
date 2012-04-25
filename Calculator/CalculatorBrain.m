@@ -121,9 +121,24 @@
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
+   for(int i=0; i < stack.count; i++){
+       id object = [stack objectAtIndex:i];
+       //check type
+       if([object isKindOfClass:[NSString class]]){
+           //check to see if its an operator
+           //if not then replace with value with the variable
+       }
+   }
+       
     //if a variable is in the stack replace it with a number
     //ignore any operation commands
     return [self popOperandOffProgramStack:stack];
+}
+
++ (NSSet *)variablesUsedInProgram:(id)program{
+}
+
+-(BOOL) isOperation:(NSString *)string{
 }
 
 -(void) clearOperandStack{
