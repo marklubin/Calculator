@@ -8,6 +8,7 @@
 //
 
 #import "CalculatorBrain.h"
+#include <math.h>
 
 @interface CalculatorBrain()
 @property (nonatomic, strong) NSMutableArray *programStack;
@@ -70,13 +71,26 @@
         } else if ([operation isEqualToString:@"/"]) {
             double divisor = [self popOperandOffProgramStack:stack];
             if (divisor) result = [self popOperandOffProgramStack:stack] / divisor;
+        }else if([operation isEqualToString:@"sin"]){
+            result = sin([self popOperandOffProgramStack:stack]);
+        }else if([operation isEqualToString:@"cos"]){
+            result = cos([self popOperandOffProgramStack:stack]);
+        }else if([operation isEqualToString:@"sqrt"]){
+            result = [self popOperandOffProgramStack:stack];
+            if(result >= 0){
+                result = sqrt(result);
+            }
+            else result = 0;
+        }else if([operation isEqualToString:@"pi"]){
+            result = M_PI;
         }
+        
     }
 
     return result;
 }
 
-+ (double)runProgram:(id)program
++ (double)runProgram:(id)program 
 {
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {
@@ -84,5 +98,16 @@
     }
     return [self popOperandOffProgramStack:stack];
 }
+
++ (double)runProgram:(id)program 
+ usingVariableValues:(NSDictionary *)variableValues{
+    //decode values and send to regular run program
+    return 0;
+}
+
+-(void) clearOperandStack{
+    [self.programStack removeAllObjects];
+}
+
 
 @end

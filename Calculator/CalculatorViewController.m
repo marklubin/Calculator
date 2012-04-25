@@ -55,6 +55,8 @@
     double result = [self.brain performOperation:operation];
     self.display.text = [NSString stringWithFormat:@"%g", result];
     self.operandStackDisplay.text = [self.operandStackDisplay.text stringByAppendingString:[operation stringByAppendingString:@" "]];
+    self.userIsInTheMiddleOfEnteringNumber = NO;
+    self.userIsINTheMiddleOfEnteringDecimal = NO;
 }
 
 - (IBAction)clearPressed {
