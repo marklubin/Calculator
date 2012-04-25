@@ -90,10 +90,32 @@
                                      stringByAppendingString:variableName];
 
 }
-
--(void) setValue:(double)value forVariable:(NSString *)variable{
-    //helper function to set value of variable send to brain
+- (IBAction)testPressed:(UIButton *)sender {
+    NSString *test = sender.currentTitle;
+    double x,y,z;
+    //change to real test values
+    if([test isEqualToString:@"Test 1"]){
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+    else if([test isEqualToString:@"Test 2"]){
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+    else if([test isEqualToString:@"Test 3"]){
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+    //set values for variables
+    [self.brain setValue:x forVariable:@"x"];
+    [self.brain setValue:y forVariable:@"y"];
+    [self.brain setValue:z forVariable:@"z"];
+    
 }
+
 
 - (IBAction)undoPressed {
     //implement undo

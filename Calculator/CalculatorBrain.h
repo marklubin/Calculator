@@ -22,6 +22,6 @@
  usingVariableValues:(NSDictionary *)variableValues;
 -(void)clearOperandStack;
 -(void)pushVariable:(NSString*) variable;
-
+-(void)setValue:(double)value forVariable:(NSString *)variable;
 
 @end
