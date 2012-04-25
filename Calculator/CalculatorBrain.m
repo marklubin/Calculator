@@ -115,30 +115,37 @@
 }
 
 + (double)runProgram:(id)program 
- usingVariableValues:(NSDictionary *)variableValues{
+ usingVariableValues:(NSMutableDictionary *)variableValues{
     //decode values and send to regular run program
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
+    //lets get the variables used in this program
+   NSSet *varsUsed = [self variablesUsedInProgram:(id)stack];
    for(int i=0; i < stack.count; i++){
        id object = [stack objectAtIndex:i];
        //check type
        if([object isKindOfClass:[NSString class]]){
-           //check to see if its an operator
-           //if not then replace with value with the variable
+           NSString *string = (NSString *)object;
+           if(![self isOperation:string] && [varsUsed containsObject:(id)string]) {
+               //if this isn't an operation and its in our dictionary
+               NSNumber *variableValue = [variableValues objectForKey:string];
+               [stack replaceObjectAtIndex:i withObject:variableValue];
+           }
        }
    }
-       
-    //if a variable is in the stack replace it with a number
-    //ignore any operation commands
     return [self popOperandOffProgramStack:stack];
 }
 
 + (NSSet *)variablesUsedInProgram:(id)program{
+    //implement this
+    return nil;
 }
 
--(BOOL) isOperation:(NSString *)string{
++(BOOL) isOperation:(NSString *)string{
+    //implement this
+    return false;
 }
 
 -(void) clearOperandStack{
