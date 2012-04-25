@@ -21,6 +21,7 @@
 + (double)runProgram:(id)program
  usingVariableValues:(NSDictionary *)variableValues;
 + (NSSet *)variablesUsedInProgram:(id)program;
++ (NSSet *)supportedOperations;
 -(void)clearOperandStack;
 -(void)pushVariable:(NSString*) variable;
 -(void)setValue:(double)value forVariable:(NSString *)variable;

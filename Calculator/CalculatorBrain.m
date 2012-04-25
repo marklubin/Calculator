@@ -105,7 +105,7 @@
     return result;
 }
 
-+ (double)runProgram:(id)program 
++ (double)runProgram:(id)program //change this method to call runProgram:usingVariableValues with our instance NSMutable Dictionary
 {
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {
@@ -122,14 +122,14 @@
         stack = [program mutableCopy];
     }
     //lets get the variables used in this program
-   NSSet *varsUsed = [self variablesUsedInProgram:(id)stack];
+   NSSet *varsUsed = [self variablesUsedInProgram:stack];
+    
    for(int i=0; i < stack.count; i++){
        id object = [stack objectAtIndex:i];
        //check type
        if([object isKindOfClass:[NSString class]]){
-           NSString *string = (NSString *)object;
-           if(![self isOperation:string] && [varsUsed containsObject:(id)string]) {
-               //if this isn't an operation and its in our dictionary
+           NSString *string = object;
+           if([varsUsed containsObject:string]) {
                NSNumber *variableValue = [variableValues objectForKey:string];
                [stack replaceObjectAtIndex:i withObject:variableValue];
            }
@@ -139,13 +139,18 @@
 }
 
 + (NSSet *)variablesUsedInProgram:(id)program{
-    //implement this
+    //loop through add all non-operations to NSSet use isOperation
     return nil;
 }
 
++ (NSSet *)supportedOperations{
+//constructs and returns a set of supported operations
+    return nil;
+}
+
+
 +(BOOL) isOperation:(NSString *)string{
-    //implement this
-    return false;
+    return [[self supportedOperations] containsObject:string];
 }
 
 -(void) clearOperandStack{
