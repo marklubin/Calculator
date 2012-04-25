@@ -140,12 +140,23 @@
 
 + (NSSet *)variablesUsedInProgram:(id)program{
     //loop through add all non-operations to NSSet use isOperation
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    for (id object in stack) {
+        if([object isKindOfClass:[NSString class]]){
+            NSString *string = object;
+            if(![self isOperation:string]){
+                //add this to variable list if its not there yet
+            }
+        }
+    }
     return nil;
 }
 
 + (NSSet *)supportedOperations{
-//constructs and returns a set of supported operations
-    return nil;
+    return [NSSet setWithObjects:@"+",@"-",@"/",@"*",@"sin",@"cos",@"pi",@"sqrt", nil];
 }
 
 
