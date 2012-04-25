@@ -12,7 +12,7 @@
 
 @interface CalculatorBrain()
 @property (nonatomic, strong) NSMutableArray *programStack;
-@property (nonatomic, strong) NSDictionary *variableDictionary;
+@property (nonatomic, strong) NSMutableDictionary *variableDictionary;
 @end
 
 @implementation CalculatorBrain
@@ -25,8 +25,8 @@
     if (_programStack == nil) _programStack = [[NSMutableArray alloc] init];
     return _programStack;
 }
--(NSDictionary *)variableDictionary{
-    if(_variableDictionary == nil) _variableDictionary = [[NSDictionary alloc] init];
+-(NSMutableDictionary *)variableDictionary{
+    if(_variableDictionary == nil) _variableDictionary = [[NSMutableDictionary alloc] init];
     return _variableDictionary;
 }
 - (id)program
@@ -40,7 +40,9 @@
 }
 
 -(void) setValue:(double)value forVariable:(NSString *)variable{
-    //Add to my NSDictionary
+    NSNumber *numberObjWrapper = [NSNumber numberWithDouble:value];
+    [self.variableDictionary setValue:numberObjWrapper forKey:variable]; 
+    //will this overright existing keys?
 }
 
 - (void)pushOperand:(double)operand
