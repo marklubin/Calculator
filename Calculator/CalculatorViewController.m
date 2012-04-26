@@ -126,7 +126,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return UIInterfaceOrientationPortrait == interfaceOrientation;
 }
 - (void)viewDidUnload {
     [self setProgramDescriptionDisplay:nil];
