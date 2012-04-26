@@ -36,7 +36,68 @@
 
 + (NSString *)descriptionOfProgram:(id)program
 {
-    return @"Implement this in Homework #2";
+    NSMutableArray *stack;
+    NSString *result;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    if(!stack) return @"";
+    id topOfStack = [stack lastObject];
+    [stack removeLastObject];
+    if([topOfStack isKindOfClass:[NSNumber class]]){
+        NSNumber *number = topOfStack;
+        result = [number stringValue];
+    }
+    else if([topOfStack isKindOfClass:[NSString class]]
+            && [CalculatorBrain isOperation:topOfStack]){
+        //this is an operation deal with it
+        NSString *operation = topOfStack;
+        if([operation isEqualToString:@"+"]){
+            NSString *firstOperand = [CalculatorBrain descriptionOfProgram:stack];
+            [stack removeLastObject];
+            NSString *secondOperand = [CalculatorBrain descriptionOfProgram:stack];
+            result = [NSString stringWithFormat:@"(%@+%@)",firstOperand,secondOperand];
+            
+        }else if([operation isEqualToString:@"-"]){
+            NSString *firstOperand = [CalculatorBrain descriptionOfProgram:stack];
+            [stack removeLastObject];
+            NSString *secondOperand = [CalculatorBrain descriptionOfProgram:stack];
+            result = [NSString stringWithFormat:@"(%@-%@)",secondOperand,firstOperand];
+        }else if([operation isEqualToString:@"/"]){
+            NSString *firstOperand = [CalculatorBrain descriptionOfProgram:stack];
+            [stack removeLastObject];
+            NSString *secondOperand = [CalculatorBrain descriptionOfProgram:stack];
+            result = [NSString stringWithFormat:@"%@/%@",secondOperand,firstOperand];
+            
+        }else if([operation isEqualToString:@"*"]){
+            NSString *firstOperand = [CalculatorBrain descriptionOfProgram:stack];
+            [stack removeLastObject];
+            NSString *secondOperand = [CalculatorBrain descriptionOfProgram:stack];
+            result = [NSString stringWithFormat:@"%@*%@",firstOperand,secondOperand];
+            
+        }else if([operation isEqualToString:@"sin"]){
+             result = [NSString stringWithFormat:@"sin(%@)",[CalculatorBrain descriptionOfProgram:stack]];
+            
+        }else if([operation isEqualToString:@"cos"]){
+            result = [NSString stringWithFormat:@"sin(%@)",[CalculatorBrain descriptionOfProgram:stack]];
+            
+        }else if([operation isEqualToString:@"sqrt"]){
+            result = [NSString stringWithFormat:@"sqrt(%@)",[CalculatorBrain descriptionOfProgram:stack]];
+            
+        }else if([operation isEqualToString:@"pi"]){
+            result = @"pi";
+        }
+        
+    } else if([topOfStack isKindOfClass:[NSString class]]){
+        //treat this like a variable and just return it
+        result = topOfStack;
+    } else{
+        //we don't know what this is so return an empty string
+        result = @"";
+    }
+    
+    
+    return result; 
 }
 
 -(void) setValue:(double)value forVariable:(NSString *)variable{
