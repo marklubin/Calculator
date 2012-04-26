@@ -17,7 +17,7 @@
 
 @implementation CalculatorViewController
 @synthesize display = _display;
-@synthesize operandStackDisplay = _operandStackDisplay;
+@synthesize programDescriptionDisplay = _programDescriptionDisplay;
 @synthesize userIsInTheMiddleOfEnteringNumber = _userIsInTheMiddleOfEnteringNumber;
 @synthesize brain = _brain;
 @synthesize userIsINTheMiddleOfEnteringDecimal = _userIsINTheMiddleOfEnteringDecimal;
@@ -43,7 +43,9 @@
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.userIsInTheMiddleOfEnteringNumber = NO;
     self.userIsINTheMiddleOfEnteringDecimal = NO;
-    self.operandStackDisplay.text = [self.operandStackDisplay.text stringByAppendingString:[self.display.text stringByAppendingString:@" "]];
+    self.programDescriptionDisplay.text = 
+    [CalculatorBrain descriptionOfProgram:[self.brain program]];
+   
 }
 
 
@@ -54,14 +56,15 @@
     NSString *operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
     self.display.text = [NSString stringWithFormat:@"%g", result];
-    self.operandStackDisplay.text = [self.operandStackDisplay.text stringByAppendingString:[operation stringByAppendingString:@" "]];
+    self.programDescriptionDisplay.text = 
+    [CalculatorBrain descriptionOfProgram:[self.brain program]];
     self.userIsInTheMiddleOfEnteringNumber = NO;
     self.userIsINTheMiddleOfEnteringDecimal = NO;
 }
 
 - (IBAction)clearPressed {
     self.display.text = @"0";
-    self.operandStackDisplay.text = @"";
+    self.programDescriptionDisplay.text = @"";
     self.userIsInTheMiddleOfEnteringNumber = NO;
     self.userIsINTheMiddleOfEnteringDecimal = NO;
     [self.brain clearOperandStack];
@@ -86,8 +89,8 @@
     if(self.userIsInTheMiddleOfEnteringNumber) [self enterPressed];
     [self.brain pushVariable:variableName];
     variableName = [variableName stringByAppendingString:@" "];
-    self.operandStackDisplay.text = [self.operandStackDisplay.text
-                                     stringByAppendingString:variableName];
+    self.programDescriptionDisplay.text = 
+        [CalculatorBrain descriptionOfProgram:[self.brain program]];
 
 }
 - (IBAction)testPressed:(UIButton *)sender {
@@ -121,8 +124,12 @@
     //implement undo
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
 - (void)viewDidUnload {
-    [self setOperandStackDisplay:nil];
+    [self setProgramDescriptionDisplay:nil];
     [super viewDidUnload];
 }
 @end

@@ -16,6 +16,8 @@
 		4D490BF51545F5C30099D422 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D490BF31545F5C30099D422 /* MainStoryboard.storyboard */; };
 		4D490BF81545F5C30099D422 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D490BF71545F5C30099D422 /* CalculatorViewController.m */; };
 		4D77B8B01546004100F97DF1 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D77B8AF1546004100F97DF1 /* CalculatorBrain.m */; };
+		4DE6B5251549DD450058496B /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6B5241549DD450058496B /* GraphView.m */; };
+		4DE6B5281549DD700058496B /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6B5271549DD700058496B /* GraphViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,10 @@
 		4D490BF71545F5C30099D422 /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
 		4D77B8AE1546004100F97DF1 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		4D77B8AF1546004100F97DF1 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
+		4DE6B5231549DD450058496B /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
+		4DE6B5241549DD450058496B /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
+		4DE6B5261549DD700058496B /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
+		4DE6B5271549DD700058496B /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +93,11 @@
 				4D77B8AF1546004100F97DF1 /* CalculatorBrain.m */,
 				4D490BF61545F5C30099D422 /* CalculatorViewController.h */,
 				4D490BF71545F5C30099D422 /* CalculatorViewController.m */,
+				4DE6B5231549DD450058496B /* GraphView.h */,
+				4DE6B5241549DD450058496B /* GraphView.m */,
 				4D490BE81545F5C30099D422 /* Supporting Files */,
+				4DE6B5261549DD700058496B /* GraphViewController.h */,
+				4DE6B5271549DD700058496B /* GraphViewController.m */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -171,6 +181,8 @@
 				4D490BF21545F5C30099D422 /* CalculatorAppDelegate.m in Sources */,
 				4D490BF81545F5C30099D422 /* CalculatorViewController.m in Sources */,
 				4D77B8B01546004100F97DF1 /* CalculatorBrain.m in Sources */,
+				4DE6B5251549DD450058496B /* GraphView.m in Sources */,
+				4DE6B5281549DD700058496B /* GraphViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
