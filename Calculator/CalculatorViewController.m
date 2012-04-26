@@ -38,6 +38,11 @@
         self.userIsInTheMiddleOfEnteringNumber = YES;
     }
 }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    //if this is the graph segue
+      //send it my program
+}
+
 
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.display.text doubleValue]];
