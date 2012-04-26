@@ -57,8 +57,8 @@
 + (NSString *)popDescriptionOfProgram:(NSMutableArray *)stack
                            withParens:(BOOL)shouldUseParens
 {
-    //if an operation needs to be in parens for our order of ops to be correct
-    // we set withParents
+    //if an downsteam operation needs to be in parens for our order of ops to be 
+    //semanatically correct we set withParents
     NSString *result;
     if(!stack) return @"";
     id topOfStack = [stack lastObject];
@@ -257,7 +257,9 @@
 -(void) clearOperandStack{
     [self.programStack removeAllObjects];
 }
-
+-(void) removeLastItem{
+    [self.programStack removeLastObject];
+}
 //deprecated with new variable features
 + (double)runProgram:(id)program 
 {

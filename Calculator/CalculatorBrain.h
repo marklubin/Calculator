@@ -25,6 +25,7 @@
 -(void)clearOperandStack;
 -(void)pushVariable:(NSString*) variable;
 -(void)setValue:(double)value forVariable:(NSString *)variable;
+-(void)removeLastItem;
 
 
 @end

@@ -121,7 +121,24 @@
 
 
 - (IBAction)undoPressed {
-    //implement undo
+    if(self.userIsInTheMiddleOfEnteringNumber){
+        //remove the last digit in display
+        self.display.text = [self.display.text substringToIndex:
+                             [self.display.text length] - 1];
+        if([self.display.text isEqualToString:@""]){
+            //if that clears the display then
+            self.display.text = @"0";
+            self.userIsInTheMiddleOfEnteringNumber = NO;
+            self.userIsINTheMiddleOfEnteringDecimal = NO;
+        }
+        
+    }else{
+        [self.brain removeLastItem];
+        self.display.text = @"0";
+        self.programDescriptionDisplay.text = 
+        [CalculatorBrain descriptionOfProgram:[self.brain program]];
+    }
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
