@@ -35,18 +35,30 @@
 }
 + (NSString *)descriptionOfProgram:(id)program{
     NSMutableArray *stack;
+    NSString *result;
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    if(stack) return [CalculatorBrain popDescriptionOfProgram:stack
-                                                   withParens:NO];
-    else return @"";
+    if(stack) {
+        result = [CalculatorBrain popDescriptionOfProgram:stack
+                                               withParens:NO];
+        while([stack lastObject]){
+            //if theres still stuff left on the stack we haven't evaled yet print comma-seperated
+            result = [result stringByAppendingFormat:@",%@",
+                      [CalculatorBrain popDescriptionOfProgram:stack withParens:NO]];
+        }
+    }    
+    
+    else result = @"";
+    return result;
 }
 
 
 + (NSString *)popDescriptionOfProgram:(NSMutableArray *)stack
                            withParens:(BOOL)shouldUseParens
 {
+    //if an operation needs to be in parens for our order of ops to be correct
+    // we set withParents
     NSString *result;
     if(!stack) return @"";
     id topOfStack = [stack lastObject];
