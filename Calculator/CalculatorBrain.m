@@ -33,14 +33,21 @@
 {
     return [self.programStack copy];
 }
-
-+ (NSString *)descriptionOfProgram:(id)program
-{
++ (NSString *)descriptionOfProgram:(id)program{
     NSMutableArray *stack;
-    NSString *result;
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
+    if(stack) return [CalculatorBrain popDescriptionOfProgram:stack
+                                                   withParens:NO];
+    else return @"";
+}
+
+
++ (NSString *)popDescriptionOfProgram:(NSMutableArray *)stack
+                           withParens:(BOOL)shouldUseParens
+{
+    NSString *result;
     if(!stack) return @"";
     id topOfStack = [stack lastObject];
     [stack removeLastObject];
@@ -53,36 +60,53 @@
         //this is an operation deal with it
         NSString *operation = topOfStack;
         if([operation isEqualToString:@"+"]){
-            NSString *firstOperand = [CalculatorBrain descriptionOfProgram:stack];
-            [stack removeLastObject];
-            NSString *secondOperand = [CalculatorBrain descriptionOfProgram:stack];
-            result = [NSString stringWithFormat:@"(%@+%@)",firstOperand,secondOperand];
-            
+            NSString *firstOperand = [CalculatorBrain popDescriptionOfProgram:stack
+                                                                   withParens:NO];
+            NSString *secondOperand = [CalculatorBrain popDescriptionOfProgram:stack
+                                                                    withParens:NO];
+            if(shouldUseParens){
+                result = [NSString stringWithFormat:@"(%@+%@)",secondOperand,firstOperand]; 
+            }else{
+                result = [NSString stringWithFormat:@"%@+%@",secondOperand,firstOperand]; 
+            }
         }else if([operation isEqualToString:@"-"]){
-            NSString *firstOperand = [CalculatorBrain descriptionOfProgram:stack];
-            [stack removeLastObject];
-            NSString *secondOperand = [CalculatorBrain descriptionOfProgram:stack];
-            result = [NSString stringWithFormat:@"(%@-%@)",secondOperand,firstOperand];
+            NSString *firstOperand = [CalculatorBrain popDescriptionOfProgram:stack
+                                      withParens:NO];
+            NSString *secondOperand = [CalculatorBrain popDescriptionOfProgram:stack
+                                       withParens:NO];
+            if(shouldUseParens){
+                result = [NSString stringWithFormat:@"(%@-%@)",secondOperand,firstOperand]; 
+            }else{
+                result = [NSString stringWithFormat:@"%@-%@",secondOperand,firstOperand]; 
+            }
         }else if([operation isEqualToString:@"/"]){
-            NSString *firstOperand = [CalculatorBrain descriptionOfProgram:stack];
-            [stack removeLastObject];
-            NSString *secondOperand = [CalculatorBrain descriptionOfProgram:stack];
+            NSString *firstOperand = [CalculatorBrain popDescriptionOfProgram:stack
+                                      withParens:YES];
+            NSString *secondOperand = [CalculatorBrain popDescriptionOfProgram:stack
+                                       withParens:YES];
             result = [NSString stringWithFormat:@"%@/%@",secondOperand,firstOperand];
             
         }else if([operation isEqualToString:@"*"]){
-            NSString *firstOperand = [CalculatorBrain descriptionOfProgram:stack];
-            [stack removeLastObject];
-            NSString *secondOperand = [CalculatorBrain descriptionOfProgram:stack];
+            NSString *firstOperand = [CalculatorBrain popDescriptionOfProgram:stack
+                                      withParens:YES];
+            NSString *secondOperand = [CalculatorBrain popDescriptionOfProgram:stack
+                                       withParens:YES];
             result = [NSString stringWithFormat:@"%@*%@",firstOperand,secondOperand];
             
         }else if([operation isEqualToString:@"sin"]){
-             result = [NSString stringWithFormat:@"sin(%@)",[CalculatorBrain descriptionOfProgram:stack]];
+             result = [NSString stringWithFormat:@"sin(%@)",
+                       [CalculatorBrain popDescriptionOfProgram:stack
+                        withParens:NO]];
             
         }else if([operation isEqualToString:@"cos"]){
-            result = [NSString stringWithFormat:@"sin(%@)",[CalculatorBrain descriptionOfProgram:stack]];
+            result = [NSString stringWithFormat:@"cos(%@)",
+                      [CalculatorBrain popDescriptionOfProgram:stack
+                       withParens:NO]];
             
         }else if([operation isEqualToString:@"sqrt"]){
-            result = [NSString stringWithFormat:@"sqrt(%@)",[CalculatorBrain descriptionOfProgram:stack]];
+            result = [NSString stringWithFormat:@"sqrt(%@)",
+                      [CalculatorBrain popDescriptionOfProgram:stack
+                       withParens:NO]];
             
         }else if([operation isEqualToString:@"pi"]){
             result = @"pi";
@@ -95,8 +119,6 @@
         //we don't know what this is so return an empty string
         result = @"";
     }
-    
-    
     return result; 
 }
 
