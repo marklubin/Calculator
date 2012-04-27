@@ -79,12 +79,12 @@
 - (IBAction)decimalPressed {
     //code to allow for decimal points in numbers
     if (!self.userIsINTheMiddleOfEnteringDecimal) {
-        self.display.text = @"";
+        self.display.text = [self.display.text stringByAppendingString:@"."];
         self.userIsINTheMiddleOfEnteringDecimal = YES;
         if(!self.userIsInTheMiddleOfEnteringNumber){
             self.userIsInTheMiddleOfEnteringNumber = YES;
         }
-        self.display.text = [self.display.text stringByAppendingString:@"."];
+        
     }
 }
 - (IBAction)variablePressed:(UIButton *)sender {
