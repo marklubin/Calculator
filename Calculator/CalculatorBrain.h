@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Mark Lubin
-//  Copyright (c) 2011 Mark Lubin
+//  Copyright (c) 2012 Mark Lubin
 //  All rights reserved.
 //
 

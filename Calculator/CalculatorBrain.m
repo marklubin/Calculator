@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Mark Lubin
-//  Copyright (c) 2011 Mark Lubin
+//  Copyright (c) 2012 Mark Lubin
 //  All rights reserved.
 //
 
@@ -43,7 +43,8 @@
         result = [CalculatorBrain popDescriptionOfProgram:stack
                                                withParens:NO];
         while([stack lastObject]){
-            //if theres still stuff left on the stack we haven't evaled yet print comma-seperated
+            //if theres still stuff left on the stack we haven't evaled yet 
+            //print it print comma-seperated
             result = [result stringByAppendingFormat:@",%@",
                       [CalculatorBrain popDescriptionOfProgram:stack withParens:NO]];
         }
@@ -58,7 +59,7 @@
                            withParens:(BOOL)shouldUseParens
 {
     //if an downsteam operation needs to be in parens for our order of ops to be 
-    //semanatically correct we set withParents
+    //semanatically correct we call with withParens:YES
     NSString *result;
     if(!stack) return @"";
     id topOfStack = [stack lastObject];

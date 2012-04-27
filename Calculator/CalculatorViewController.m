@@ -145,10 +145,13 @@
     }
 
 }
+- (IBAction)graphPressed {
+    //for ipad if crash is pressed lets give our GraphViewController some Data
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return UIInterfaceOrientationPortrait == interfaceOrientation;
+    return YES;
 }
 - (void)viewDidUnload {
     [self setProgramDescriptionDisplay:nil];
