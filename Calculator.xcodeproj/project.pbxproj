@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D3533FD154C854100BDA684 /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3533FC154C854100BDA684 /* AxesDrawer.m */; };
 		4D490BE21545F5C30099D422 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D490BE11545F5C30099D422 /* UIKit.framework */; };
 		4D490BE41545F5C30099D422 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D490BE31545F5C30099D422 /* Foundation.framework */; };
 		4D490BE61545F5C30099D422 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D490BE51545F5C30099D422 /* CoreGraphics.framework */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D3533FB154C854100BDA684 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
+		4D3533FC154C854100BDA684 /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 		4D490BDD1545F5C30099D422 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D490BE11545F5C30099D422 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4D490BE31545F5C30099D422 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +92,8 @@
 		4D490BE71545F5C30099D422 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				4D3533FB154C854100BDA684 /* AxesDrawer.h */,
+				4D3533FC154C854100BDA684 /* AxesDrawer.m */,
 				4D490BF01545F5C30099D422 /* CalculatorAppDelegate.h */,
 				4D490BF11545F5C30099D422 /* CalculatorAppDelegate.m */,
 				4D490BF31545F5C30099D422 /* MainStoryboard.storyboard */,
@@ -187,6 +192,7 @@
 				4D77B8B01546004100F97DF1 /* CalculatorBrain.m in Sources */,
 				4DE6B5251549DD450058496B /* GraphView.m in Sources */,
 				4DE6B5281549DD700058496B /* GraphViewController.m in Sources */,
+				4D3533FD154C854100BDA684 /* AxesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
