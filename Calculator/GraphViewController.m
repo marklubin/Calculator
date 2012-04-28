@@ -10,6 +10,7 @@
 #import "CalculatorBrain.h"
 
 @interface GraphViewController ()
+@property BOOL haveFunctionToGraph;
 
 @end
 
@@ -17,6 +18,7 @@
 @synthesize program = _program;
 @synthesize graph = _graph;
 @synthesize toolBar = _toolBar;
+@synthesize haveFunctionToGraph = _haveFunctionToGraph;
 
 -(void)setGraph:(GraphView *)graph{
     _graph = graph;
@@ -33,6 +35,7 @@
     [self.graph addGestureRecognizer:tapgr];
 }
 
+
 -(double)functionValueAtPoint:(double)x{
     double result = 0;
     NSNumber *numberWrapper = [NSNumber numberWithDouble:x];
@@ -45,6 +48,11 @@
     _program = program;
     //when my program changes lets set my title this shows on the iphone
     self.title  = [CalculatorBrain descriptionOfProgram:self.program];
+    if(self.graph){
+        self.graph.haveFunctionToGraph = YES;
+        self.haveFunctionToGraph = YES;
+        [self.graph setNeedsDisplay];
+    }
 }
 
 
@@ -54,6 +62,10 @@
     self.splitViewController.delegate = self;
     self.splitViewController.presentsWithGesture = NO;
 	self.graph.dataSource = self; //set myself as the GraphView's DataSource
+    if(self.haveFunctionToGraph){
+        self.graph.haveFunctionToGraph = YES;
+        [self.graph setNeedsDisplay];
+    }
 }
 
 - (void)viewDidUnload
@@ -64,11 +76,6 @@
     // Release any retained subviews of the main view.
 }
 
--(void)newGraph
-{
-    self.graph.haveFunctionToGraph = YES;
-    [self.graph setNeedsDisplay];
-}
 
 -(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
 {

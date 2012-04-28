@@ -162,7 +162,6 @@
         if([detailViewControler isKindOfClass:[GraphViewController class]]){
             GraphViewController *graphViewControler = detailViewControler;
             graphViewControler.program = self.brain.program;
-            [graphViewControler newGraph];
         }
     }
    

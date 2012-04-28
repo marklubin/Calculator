@@ -70,7 +70,8 @@
        (recognizer.state == UIGestureRecognizerStateEnded))
     {
         
-        //self.scale *= (recognizer.scale/10);
+        self.scale *= recognizer.scale;
+        recognizer.scale = 1.0;
         [self setNeedsDisplay];
     }
 }
