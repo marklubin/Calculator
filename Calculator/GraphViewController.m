@@ -82,7 +82,12 @@
 
 -(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
 {
-    return NO;//always show master for now since it works differently than before and i have to figure it out
+    return NO;
+   
+    /* Always show master for now since it works differently than before and i have to figure it out, 
+    1. fix slide out button and make it popover or allow button to actually work
+    2. figure out how to set origin correctly. */
+
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

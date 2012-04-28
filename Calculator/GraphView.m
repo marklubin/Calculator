@@ -20,25 +20,24 @@
 @synthesize origin = _origin;
 @synthesize scale = _scale;
 
--(void)setup{
-    CGFloat x0 = self.frame.size.width/2.0;
-    CGFloat y0 = self.frame.size.height/2.0;
-    CGPoint initOrigin = CGPointMake(x0, y0);
-    self.origin = initOrigin;
-    //set initial scale
-}
--(void)awakeFromNib{
-    [self setup];
-}
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
+
+
+-(CGPoint)origin{
+    if(_origin.x == 0.0 && _origin.y == 0){
+        CGFloat x0 = self.bounds.size.width/2.0;
+        CGFloat y0 = self.bounds.size.height/2.0;
+        CGPoint initOrigin = CGPointMake(x0, y0);
+        _origin = initOrigin; 
     }
-    return self;
+    return _origin;
 }
 
+-(CGFloat)scale{
+    if(_scale == 0.0){
+        _scale = 1.0;
+    }
+    return _scale;
+}
 
 
 -(void)pan:(UIPanGestureRecognizer *)recognizer{
