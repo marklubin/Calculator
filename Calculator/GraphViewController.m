@@ -16,6 +16,7 @@
 @implementation GraphViewController
 @synthesize program = _program;
 @synthesize graph = _graph;
+@synthesize toolBar = _toolBar;
 
 -(double)functionValueAtPoint:(double)x{
     double result = 0;
@@ -34,20 +35,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.graph.dataSource = self; //set myself as the GraphView's DataSource≈
+    self.splitViewController.delegate = self;
+	self.graph.dataSource = self; //set myself as the GraphView's DataSource
 }
 
 - (void)viewDidUnload
 {
     [self setGraph:nil];
+    [self setToolBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 
+
+-(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
+{
+    NSMutableArray *toolbarItems = [self.toolBar.items mutableCopy];
+    barButtonItem.title = @"RPN Calculator";
+    [toolbarItems insertObject:barButtonItem atIndex:0];
+    self.toolBar.items = toolbarItems;
+   
+}
+
+-(void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    NSMutableArray *toolbarItems = [self.toolBar.items mutableCopy];
+    [toolbarItems removeObject:barButtonItem];
+    self.toolBar.items = toolbarItems;
+    
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (self.splitViewController) return YES;
     else return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
+
 
 @end

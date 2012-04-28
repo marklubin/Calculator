@@ -14,6 +14,7 @@
     UIViewController<UISplitViewControllerDelegate,GraphDataSource>
 @property (nonatomic,strong) id program;
 @property (weak, nonatomic) IBOutlet GraphView *graph;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
 
 @end

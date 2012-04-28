@@ -169,8 +169,15 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if (self.splitViewController) return YES;
-    else return interfaceOrientation == UIInterfaceOrientationPortrait;
+    if (self.splitViewController) {
+        return YES;
+    }
+    else {
+        return interfaceOrientation = UIInterfaceOrientationPortrait;
+    }
+}
+-(void)viewDidLoad{
+    self.title = @"RPN Calc";
 }
 - (void)viewDidUnload {
     [self setProgramDescriptionDisplay:nil];
