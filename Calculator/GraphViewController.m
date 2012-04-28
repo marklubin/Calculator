@@ -51,6 +51,7 @@
 {
     [super viewDidLoad];
     self.splitViewController.delegate = self;
+    self.splitViewController.presentsWithGesture = NO;
 	self.graph.dataSource = self; //set myself as the GraphView's DataSource
 }
 
@@ -80,15 +81,7 @@
     
 }
 
--(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-{
-    return NO;
-   
-    /* Always show master for now since it works differently than before and i have to figure it out, 
-    1. fix slide out button and make it popover or allow button to actually work
-    2. figure out how to set origin correctly. */
 
-}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (self.splitViewController) return YES;
