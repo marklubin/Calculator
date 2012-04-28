@@ -15,6 +15,6 @@
 
 @interface GraphView : UIView
 
-@property id<GraphDataSource> dataSource;
+@property (nonatomic) id<GraphDataSource> dataSource;
 
 @end

@@ -27,6 +27,7 @@
     [[UIPinchGestureRecognizer alloc] initWithTarget:self.graph action:@selector(pinch:)];
     UITapGestureRecognizer *tapgr = 
     [[UITapGestureRecognizer alloc] initWithTarget:self.graph action:@selector(tap:)];
+    tapgr.numberOfTapsRequired = 3;
     [self.graph addGestureRecognizer:pangr];
     [self.graph addGestureRecognizer:pinchgr];
     [self.graph addGestureRecognizer:tapgr];
@@ -77,6 +78,11 @@
     [toolbarItems removeObject:barButtonItem];
     self.toolBar.items = toolbarItems;
     
+}
+
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;//always show master for now since it works differently than before and i have to figure it out
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

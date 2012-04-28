@@ -177,7 +177,7 @@
     }
 }
 -(void)viewDidLoad{
-    self.title = @"RPN Calc";
+    self.title = @"RPN Calculator";
 }
 - (void)viewDidUnload {
     [self setProgramDescriptionDisplay:nil];
