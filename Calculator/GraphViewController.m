@@ -48,11 +48,12 @@
     _program = program;
     //when my program changes lets set my title this shows on the iphone
     self.title  = [CalculatorBrain descriptionOfProgram:self.program];
-    if(self.graph){
+    if(self.graph){ //ipad
         self.graph.haveFunctionToGraph = YES;
-        self.haveFunctionToGraph = YES;
         [self.graph setNeedsDisplay];
     }
+    //if i'm on the iphone ill tell myself i have something to graph when the view loads
+    self.haveFunctionToGraph = YES; 
 }
 
 
@@ -62,7 +63,7 @@
     self.splitViewController.delegate = self;
     self.splitViewController.presentsWithGesture = NO;
 	self.graph.dataSource = self; //set myself as the GraphView's DataSource
-    if(self.haveFunctionToGraph){
+    if(self.haveFunctionToGraph){//iphone
         self.graph.haveFunctionToGraph = YES;
         [self.graph setNeedsDisplay];
     }
