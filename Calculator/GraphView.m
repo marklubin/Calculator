@@ -13,6 +13,7 @@
 @synthesize dataSource = _dataSource;
 
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -22,13 +23,22 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+-(void)pan:(UIPanGestureRecognizer *)recognizer{
+    //move origin with pan, maybe share code with tap:
+
+}
+
+-(void)tap:(UITapGestureRecognizer *)recognizer{
+    //move origin for triple tap
+}
+
+-(void)pinch:(UIPinchGestureRecognizer *)recognizer{
+    //scale when pinched
+}
+
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    double x = 0;
+    double y = [self.dataSource functionValueAtPoint:x];
 }
-*/
-
 @end

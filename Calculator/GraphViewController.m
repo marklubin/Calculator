@@ -27,7 +27,7 @@
 
 -(void)setProgram:(id)program{
     _program = program;
-    //when my program changes lets set my title
+    //when my program changes lets set my title this shows on the iphone
     self.title  = [CalculatorBrain descriptionOfProgram:self.program];
 }
 
