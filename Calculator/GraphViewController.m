@@ -7,21 +7,28 @@
 //
 
 #import "GraphViewController.h"
+#import "CalculatorBrain.h"
 
 @interface GraphViewController ()
 
 @end
 
 @implementation GraphViewController
+@synthesize program = _program;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+-(double)functionValueAtPoint:(double)x{
+    double result = 0;
+    //call calculator brain with function value of x and return result
+   /* NSDIctionary *variable = [NSDictionary dictionaryWithObject:<#(id)#> forKey:<#(id)#>*/
+    return result;
 }
+
+-(void)setProgram:(id)program{
+    _program = program;
+    //when my program changes lets set my title
+    self.title  = [CalculatorBrain descriptionOfProgram:self.program];
+}
+
 
 - (void)viewDidLoad
 {
@@ -37,7 +44,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    if (self.splitViewController) return YES;
+    else return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 @end

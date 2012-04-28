@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphView.h"
 
-@interface GraphViewController : UIViewController<UISplitViewControllerDelegate>
+
+@interface GraphViewController : 
+    UIViewController<UISplitViewControllerDelegate,GraphDataSource>
+@property (nonatomic,strong) id program;
+
 
 @end

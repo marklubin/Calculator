@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphViewController.h"
 
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringNumber;
@@ -38,11 +39,6 @@
         self.userIsInTheMiddleOfEnteringNumber = YES;
     }
 }
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    //if this is the graph segue
-      //send it my program
-}
-
 
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.display.text doubleValue]];
@@ -127,7 +123,14 @@
 
 - (IBAction)undoPressed {
     if(self.userIsInTheMiddleOfEnteringNumber){
-        //remove the last digit in display
+       //reset my decimal state if i'm removing the decimal point
+        NSString *lastChar =[self.display.text substringFromIndex:
+                             [self.display.text length] - 1];
+        if([lastChar isEqualToString:@"."]){
+            self.userIsINTheMiddleOfEnteringDecimal = NO;
+        }
+        
+        //remvoe the last character
         self.display.text = [self.display.text substringToIndex:
                              [self.display.text length] - 1];
         if([self.display.text isEqualToString:@""]){
@@ -136,7 +139,7 @@
             self.userIsInTheMiddleOfEnteringNumber = NO;
             self.userIsINTheMiddleOfEnteringDecimal = NO;
         }
-        
+    //otherewise pop the last thing off stack
     }else{
         [self.brain removeLastItem];
         self.display.text = @"0";
@@ -145,13 +148,29 @@
     }
 
 }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    //if this is the graph segue
+    //send it my program
+    if([segue.identifier isEqualToString:@"ShowGraph"]){
+        GraphViewController *graphVC = segue.destinationViewController; 
+        graphVC.program =self.brain.program;
+    }
+}
 - (IBAction)graphPressed {
-    //for ipad if crash is pressed lets give our GraphViewController some Data
+    if(self.splitViewController){
+        id detailViewControler = [[self.splitViewController viewControllers] lastObject];
+        if([detailViewControler isKindOfClass:[GraphViewController class]]){
+            GraphViewController *graphViewControler = detailViewControler;
+            graphViewControler.program = self.brain.program;
+        }
+    }
+   
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    if (self.splitViewController) return YES;
+    else return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 - (void)viewDidUnload {
     [self setProgramDescriptionDisplay:nil];

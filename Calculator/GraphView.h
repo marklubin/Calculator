@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol GraphDataSource
+-(double)functionValueAtPoint:(double)x;
+@end
+
+
 
 @interface GraphView : UIView
 
