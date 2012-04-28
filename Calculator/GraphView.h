@@ -17,5 +17,6 @@
 
 
 @property (nonatomic) id<GraphDataSource> dataSource;
+@property BOOL haveFunctionToGraph;
 
 @end

@@ -35,8 +35,9 @@
 
 -(double)functionValueAtPoint:(double)x{
     double result = 0;
-    //call calculator brain with function value of x and return result
-   /* NSDIctionary *variable = [NSDictionary dictionaryWithObject:<#(id)#> forKey:<#(id)#>*/
+    NSNumber *numberWrapper = [NSNumber numberWithDouble:x];
+    NSDictionary *variable = [NSDictionary dictionaryWithObject:numberWrapper forKey:@"x"];
+    result = [CalculatorBrain runProgram:self.program usingVariableValues:variable];
     return result;
 }
 
@@ -63,6 +64,11 @@
     // Release any retained subviews of the main view.
 }
 
+-(void)newGraph
+{
+    self.graph.haveFunctionToGraph = YES;
+    [self.graph setNeedsDisplay];
+}
 
 -(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
 {

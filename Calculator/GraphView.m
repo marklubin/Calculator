@@ -19,6 +19,7 @@
 @synthesize dataSource = _dataSource;
 @synthesize origin = _origin;
 @synthesize scale = _scale;
+@synthesize haveFunctionToGraph = _haveFunctionToGraph;
 
 
 
@@ -34,7 +35,7 @@
 
 -(CGFloat)scale{
     if(_scale == 0.0){
-        _scale = 1.0;
+        _scale = 20.0;
     }
     return _scale;
 }
@@ -69,7 +70,7 @@
        (recognizer.state == UIGestureRecognizerStateEnded))
     {
         
-
+        //self.scale *= (recognizer.scale/10);
         [self setNeedsDisplay];
     }
 }
@@ -79,9 +80,23 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     [AxesDrawer drawAxesInRect:self.bounds 
                  originAtPoint:self.origin 
-                         scale:self.contentScaleFactor];
+                         scale:self.scale];
     //TODO Draw function for points x
-    double x = 0;
-    double y = [self.dataSource functionValueAtPoint:x];
+    if(self.haveFunctionToGraph){
+        CGFloat cursor = 0.0;
+        CGFloat x,y,height;
+        CGContextBeginPath(context);
+        CGContextMoveToPoint(context, cursor, self.origin.y);
+        while(cursor < self.bounds.size.width){
+            x = (cursor - self.origin.x)/self.scale;
+            y = [self.dataSource functionValueAtPoint:x];
+            height = (self.origin.y - (y * self.scale));
+            CGContextAddLineToPoint(context, cursor, height);
+            cursor += self.contentScaleFactor;
+        }
+        [[UIColor redColor] setStroke];
+        CGContextDrawPath(context, kCGPathStroke);
+    }
+    
 }
 @end
