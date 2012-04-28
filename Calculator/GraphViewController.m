@@ -15,6 +15,7 @@
 
 @implementation GraphViewController
 @synthesize program = _program;
+@synthesize graph = _graph;
 
 -(double)functionValueAtPoint:(double)x{
     double result = 0;
@@ -33,11 +34,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	self.graph.dataSource = self; //set myself as the GraphView's DataSource≈
 }
 
 - (void)viewDidUnload
 {
+    [self setGraph:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

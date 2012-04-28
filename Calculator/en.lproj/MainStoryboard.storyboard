@@ -460,6 +460,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Graph" id="VsK-c9-oB1"/>
                     <connections>
+                        <outlet property="graph" destination="4eR-3Z-OfF" id="aph-y4-aqP"/>
                         <outlet property="view" destination="4eR-3Z-OfF" id="nNG-12-Dul"/>
                     </connections>
                 </viewController>
@@ -485,21 +486,6 @@
             <point key="canvasLocation" x="-754" y="16"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CalculatorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="display" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="programDescriptionDisplay" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="GraphView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphView.h"/>
-        </class>
-        <class className="GraphViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

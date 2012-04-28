@@ -13,6 +13,7 @@
 @interface GraphViewController : 
     UIViewController<UISplitViewControllerDelegate,GraphDataSource>
 @property (nonatomic,strong) id program;
+@property (weak, nonatomic) IBOutlet GraphView *graph;
 
 
 @end

@@ -15,4 +15,6 @@
 
 @interface GraphView : UIView
 
+@property id<GraphDataSource> dataSource;
+
 @end
