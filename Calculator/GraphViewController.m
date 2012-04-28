@@ -18,6 +18,20 @@
 @synthesize graph = _graph;
 @synthesize toolBar = _toolBar;
 
+-(void)setGraph:(GraphView *)graph{
+    _graph = graph;
+    //add gesture recs
+    UIPanGestureRecognizer *pangr = 
+    [[UIPanGestureRecognizer alloc] initWithTarget:self.graph action:@selector(pan:)];
+    UIPinchGestureRecognizer *pinchgr = 
+    [[UIPinchGestureRecognizer alloc] initWithTarget:self.graph action:@selector(pinch:)];
+    UITapGestureRecognizer *tapgr = 
+    [[UITapGestureRecognizer alloc] initWithTarget:self.graph action:@selector(tap:)];
+    [self.graph addGestureRecognizer:pangr];
+    [self.graph addGestureRecognizer:pinchgr];
+    [self.graph addGestureRecognizer:tapgr];
+}
+
 -(double)functionValueAtPoint:(double)x{
     double result = 0;
     //call calculator brain with function value of x and return result
